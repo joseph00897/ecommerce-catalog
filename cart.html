@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+  <meta charset="UTF-8" />
+
+  <meta
+    name="viewport"
+    content="width=device-width, initial-scale=1.0"
+  />
+
+  <title>Cart</title>
+
+  <link
+    rel="stylesheet"
+    href="css/style.css"
+  />
+
+</head>
+
+<body>
+
+  <header class="header">
+
+    <div class="logo">
+      LuxeStore
+    </div>
+
+    <nav>
+
+      <a href="index.html">Home</a>
+      <a href="products.html">Products</a>
+      <a href="categories.html">Categories</a>
+      <a href="cart.html">Cart</a>
+
+    </nav>
+
+  </header>
+
+  <section class="hero">
+
+    <h1>
+      Your Shopping Cart
+    </h1>
+
+  </section>
+
+  <main
+    id="cart-container"
+    class="product-grid"
+  >
+
+  </main>
+
+  <script>
+
+    const cart =
+      JSON.parse(localStorage.getItem("cart")) || [];
+
+    const cartContainer =
+      document.getElementById("cart-container");
+
+    if (cart.length === 0) {
+
+      cartContainer.innerHTML =
+        "<h2>Your cart is empty</h2>";
+
+    }
+
+    else {
+
+      cart.forEach(product => {
+
+        const card =
+          document.createElement("div");
+
+        card.classList.add("product-card");
+
+        card.innerHTML = `
+          <img src="${product.image}" />
+
+          <div class="product-info">
+
+            <h3>
+              ${product.title}
+            </h3>
+
+            <p class="price">
+              $${product.price}
+            </p>
+
+          </div>
+        `;
+
+        cartContainer.appendChild(card);
+
+      });
+
+    }
+
+  </script>
+
+</body>
+</html>
